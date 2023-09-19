@@ -2,6 +2,8 @@
 
 const request = require("supertest");
 const app = require("../app");
+const jsonschema = require('jsonschema');
+const shippingSchema = require('../shipmentSchema');
 
 
 describe("POST /", function () {

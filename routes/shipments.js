@@ -5,6 +5,8 @@ const { BadRequestError } = require("../expressError");
 const router = new express.Router();
 
 const { shipProduct } = require("../shipItApi");
+const jsonschema = require('jsonschema');
+const shippingSchema = require('../shipmentSchema');
 
 /** POST /ship
  *
