@@ -17,9 +17,15 @@ const shippingSchema = require('../shipmentSchema');
  */
 
 router.post("/", async function (req, res, next) {
-  if (req.body === undefined) {
-    throw new BadRequestError();
+  const results = jsonschema.validate(
+    req.body, shippingSchema, {required: true}
+  );
+
+  if (!results.valid) {
+    const errs = results.errors.map(err => err.stack);
+    throw new BadRequestError(errs);
   }
+
   const { productId, name, addr, zip } = req.body;
   const shipId = await shipProduct({ productId, name, addr, zip });
   return res.json({ shipped: shipId });
