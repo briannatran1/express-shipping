@@ -26,7 +26,6 @@ async function shipProduct({ productId, name, addr, zip }) {
   });
 
   const shipData = await response.json();
-  console.log(shipData);
 
   return shipData.receipt.shipId;
 }
